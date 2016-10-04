@@ -1,0 +1,16 @@
+{
+  "name": "ssh-app",
+  "productName": "SSH2 Client",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "A SSH2 Application",
+  "author": {
+    "name": "Nilesh Mali",
+    "email": "nileshmali86@gmail.com"
+  },
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "electron-debug": "1.0.1"
+  }
+}

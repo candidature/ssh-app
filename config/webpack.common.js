@@ -5,7 +5,7 @@ const Path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const buildDir = Path.resolve(__dirname, '../dist');
+const buildDir = Path.resolve(__dirname, '../build');
 
 const styles = [
   Path.resolve(__dirname, '../node_modules/font-awesome/scss/font-awesome.scss'),

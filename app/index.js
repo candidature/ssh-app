@@ -2,9 +2,7 @@ const { app, BrowserWindow } = require('electron');
 
 let win;
 
-if (process.env.DEV) {
-  require('electron-debug')();
-}
+require('electron-debug')();
 
 function createWindow() {
   win = new BrowserWindow({
