@@ -1,0 +1,33 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: stretch;
+
+  div.header, div.body, div.footer {
+    display: flex;
+    flex-direction: row;
+  }
+  div.body {
+    flex: 1;
+    align-content: stretch;
+    align-items: stretch;
+    div.aside {
+      display: flex;
+      flex-direction: column;
+      width: 15%;
+    }
+    div.content {
+      display: flex;
+      flex: 1;
+    }
+  }
+  div.header, div.footer {
+    flex-direction: row;
+    align-items: center;
+    height: 1.5em;
+  }
+
+}
+

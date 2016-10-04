@@ -1,0 +1,8 @@
+$font-size: rem(1.4);
+$header-height: 2em;
+
+
+@function rem($multiplier) {
+  $font-size: 10px;
+  @return $multiplier * $font-size;
+}

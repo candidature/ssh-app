@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const buildDir = Path.resolve(__dirname, '../dist');
 
 const styles = [
+  Path.resolve(__dirname, '../node_modules/font-awesome/scss/font-awesome.scss'),
   Path.resolve(__dirname, '../src/styles.scss')
 ];
 const scripts = [];
