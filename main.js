@@ -19,7 +19,7 @@ function createWindow() {
     win.openDevTools();
     require('devtron').install();
   } else {
-    win.loadURL(`file://${__dirname}/dist/index.html`);
+    win.loadURL(`file://${__dirname}/index.html`);
   }
 
   win.on('closed', () => {

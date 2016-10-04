@@ -17,9 +17,9 @@ const entry = {
   styles: styles
 };
 const envs = {
-  source: '../src/environment.ts',
-  prod: '../src/environment.prod.ts',
-  production: '../src/environment.prod.ts'     
+  source: '../src/environments/environment.ts',
+  prod: '../src/environments/environment.prod.ts',
+  production: '../src/environments/environment.prod.ts'
 };
 const config = {
   devtool: 'source-map',
@@ -83,21 +83,12 @@ const config = {
         .replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')),
       Path.resolve(__dirname, envs[process.env.NODE_ENV] || envs['source'])
     ),
-    new Webpack.optimize.CommonsChunkPlugin({
-      name: ['styles', 'scripts', 'main'].reverse()
-    }),
-    new Webpack.optimize.CommonsChunkPlugin({
-      minChunks: Infinity,
-      name: 'inline',
-      filename: 'inline.js',
-      sourceMapFilename: 'inline.map'
-    }),
     new CopyWebpackPlugin([{
       context: Path.resolve(__dirname, '../src/assets'),
       from: { glob: '**/*', dot: true },
       ignore: ['.gitkeep'],
       to: Path.resolve(__dirname, '../dist/assets')
-    }])
+    }], { ignore: ['fonts/**'] })
   ],
   node: {
     fs: 'empty',
