@@ -1,5 +1,7 @@
 @import '../core/style/variables';
 
+$item-height: 1.6em;
+
 :host {
   display: flex;
   flex-direction: column;
@@ -25,7 +27,27 @@
       flex-direction: column;
       align-items: flex-start;
       align-content: flex-start;
-      padding: 3px;
+      div.item {
+        flex: 0 0 $item-height;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+        cursor: pointer;
+        -webkit-user-select: none;
+        width: 100%;
+        div.item-action {
+          padding: 0 3px 0 3px;
+        }
+        &:hover {
+          background-color: darkcyan;
+          color: #fff;
+        }
+        &.active {
+          background-color: cyan;
+          color: #808080;
+        }
+      }
     }
   }
 }
