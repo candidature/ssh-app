@@ -1,6 +1,6 @@
 {
   "name": "ssh-app",
-  "productName": "SSH2 Client",
+  "productName": "SSH2Client",
   "version": "1.0.0",
   "license": "MIT",
   "description": "A SSH2 Application",
@@ -9,7 +9,7 @@
     "email": "nileshmali86@gmail.com"
   },
   "private": true,
-  "main": "index.js",
+  "main": "./out/index.js",
   "dependencies": {
     "electron-debug": "1.0.1"
   }

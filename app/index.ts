@@ -1,6 +1,8 @@
-const { app, BrowserWindow } = require('electron');
+import {app, BrowserWindow, Menu} from 'electron';
+import {template} from './menu';
 
 let win;
+let menu;
 
 require('electron-debug')();
 
@@ -8,8 +10,8 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 600,
-    'accept-first-mouse': true,
-    'title-bar-style': 'hidden'
+    acceptFirstMouse: true,
+    titleBarStyle: 'hidden'
   });
 
   if (process.env.DEV) {
@@ -17,12 +19,15 @@ function createWindow() {
     win.openDevTools();
     require('devtron').install();
   } else {
-    win.loadURL(`file://${__dirname}/index.html`);
+    win.loadURL(`file://${__dirname}/../dist/index.html`);
   }
 
   win.on('closed', () => {
     win = null;
   });
+
+  menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
 }
 
 app.on('ready', createWindow);

@@ -6,12 +6,11 @@ const webpackMerge = require('webpack-merge');
 const tsConfig = Path.resolve(__dirname, '../src/tsconfig.json');
 
 const prodConfig = {
-  devtool: 'eval',
   output: {
-    path: Path.resolve(__dirname, '../build'),
-    filename: '[name].[chunkhash].bundle.js',
-    sourceMapFilename: '[name].[chunkhash].bundle.map',
-    chunkFilename: '[id].[chunkhash].chunk.js'
+    path: Path.resolve(__dirname, '../app/dist'),
+    filename: '[name].bundle.js',
+    sourceMapFilename: '[name].bundle.map',
+    chunkFilename: '[id].chunk.js'
   },
   module: {
     rules: [
@@ -31,7 +30,7 @@ const prodConfig = {
     }),
     new Webpack.optimize.UglifyJsPlugin({
       mangle: { screw_ie8: true },
-      compress: { screw_ie8: true },
+      compress: { screw_ie8: true, warnings: false },
       comments: false,
       sourceMap: true
     })
