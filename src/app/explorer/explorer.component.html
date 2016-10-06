@@ -1,9 +1,9 @@
-<div class="panel">
-  <div class="title">Connections</div>
+<div class="pane" *ngFor="let pane of model.panes">
+  <div class="title">{{pane.title}}</div>
   <div class="body">
-    <div class="item">
+    <div class="item" *ngFor="let item of pane.items" (dblclick)="itemClicked(item)" (contextmenu)="itemContextMenu(item)">
       <div class="item-action"><span class="fa fa-caret-right"></span></div>
-      <div class="item-label">Conn1</div>
+      <div class="item-label">{{item.label}}</div>
     </div>
   </div>
 </div>

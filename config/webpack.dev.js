@@ -32,15 +32,6 @@ const devConfig = {
     ]
   },
   plugins: [
-    new Webpack.LoaderOptionsPlugin({
-      options: {
-        tslint: {
-          emitErrors: true,
-          failOnHint: true,
-          resourcePath: Path.resolve(__dirname, '../src')
-        }
-      }
-    }),
     new Webpack.ContextReplacementPlugin(/.*/, Path.resolve(__dirname, '../src')),
     new atl.ForkCheckerPlugin()
   ]

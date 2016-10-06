@@ -34,26 +34,6 @@ const prodConfig = {
       compress: { screw_ie8: true },
       comments: false,
       sourceMap: true
-    }),
-    new Webpack.LoaderOptionsPlugin({
-      options: {
-        tslint: {
-          emitErrors: true,
-          failOnHint: true,
-          resourcePath: Path.resolve(__dirname, '../src')
-        },
-        htmlLoader: {
-          minimize: true,
-          removeAttributeQuotes: false,
-          caseSensitive: true,
-          customAttrSurround: [
-            [/#/, /(?:)/],
-            [/\*/, /(?:)/],
-            [/\[?\(?/, /(?:)/]
-          ],
-          customAttrAssign: [/\)?\]?=/]
-        }
-      }
     })
   ]
 };

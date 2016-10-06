@@ -72,6 +72,28 @@ const config = {
     ]
   },
   plugins: [
+    new Webpack.LoaderOptionsPlugin({
+      options: {
+        minimize: true,
+        debug: false,
+        tslint: {
+          emitErrors: true,
+          failOnHint: true,
+          resourcePath: Path.resolve(__dirname, '../src')
+        },
+        htmlLoader: {
+          minimize: true,
+          removeAttributeQuotes: false,
+          caseSensitive: true,
+          customAttrSurround: [
+            [/#/, /(?:)/],
+            [/\*/, /(?:)/],
+            [/\[?\(?/, /(?:)/]
+          ],
+          customAttrAssign: [/\)?\]?=/]
+        }
+      }
+    }),
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, '../src/index.html'),
       chunkSortMode: 'dependency'

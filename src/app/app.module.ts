@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { ExplorerComponent } from './explorer/explorer.component';
+import { ExplorerComponent } from './explorer';
 
 @NgModule({
   declarations: [

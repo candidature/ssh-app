@@ -40,10 +40,11 @@
     "@angular/platform-browser-dynamic": "2.0.1",
     "@angular/platform-server": "2.0.1",
     "@ngtools/webpack": "1.0.0",
-    "@types/node": "6.0.42",
+    "@types/electron": "1.4.23",
+    "@types/node": "6.0.43",
     "@types/ssh2": "0.5.33",
     "@types/ssh2-streams": "0.1.2",
-    "@types/webpack": "1.12.34",
+    "@types/webpack": "1.12.35",
     "angular2-template-loader": "0.5.0",
     "awesome-typescript-loader": "2.2.4",
     "codelyzer": "1.0.0-beta.0",
@@ -73,6 +74,7 @@
     "style-loader": "0.13.1",
     "tslint": "3.15.1",
     "typescript": "2.0.3",
+    "uglify-js": "mishoo/UglifyJS2#harmony",
     "url-loader": "0.5.7",
     "webpack": "2.1.0-beta.25",
     "webpack-dev-server": "2.1.0-beta.8",
@@ -81,6 +83,7 @@
   },
   "build": {
     "appId": "com.github.ssh2",
+    "asar": false,
     "extraResources": [
       {
         "from": "build",
