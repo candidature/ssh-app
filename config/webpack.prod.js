@@ -1,6 +1,6 @@
 const Path = require('path');
 const Webpack = require('webpack');
-const { NgcWebpackPlugin } = require('@ngtools/webpack');
+const { AotPlugin } = require('@ngtools/webpack');
 const webpackMerge = require('webpack-merge');
 
 const tsConfig = Path.resolve(__dirname, '../src/tsconfig.json');
@@ -22,11 +22,9 @@ const prodConfig = {
     ]
   },
   plugins: [
-    new NgcWebpackPlugin({
-      project: tsConfig,
-      baseDir: Path.resolve(__dirname, '..'),
-      entryModule: Path.join(__dirname, '../src', 'app/app.module#AppModule'),
-      genDir: Path.resolve(__dirname, '../tmp', 'ngFactory')
+    new AotPlugin({
+      tsConfigPath: tsConfig,
+      mainPath: Path.join(__dirname, '../src/main.ts')
     }),
     new Webpack.optimize.UglifyJsPlugin({
       mangle: { screw_ie8: true },

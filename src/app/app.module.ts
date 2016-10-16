@@ -5,11 +5,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ExplorerComponent } from './explorer';
+import { TabsComponent, TabComponent } from './shared';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExplorerComponent
+    ExplorerComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,

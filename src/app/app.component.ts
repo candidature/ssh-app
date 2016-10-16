@@ -9,6 +9,7 @@ import { ExplorerModel } from './explorer';
 export class AppComponent {
   explorerModel: ExplorerModel;
   title = 'Welcome to electron app!!!';
+  connections: Array<any> = [];
 
   constructor() {
     this.explorerModel = {

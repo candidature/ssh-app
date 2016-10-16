@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { remote } from 'electron';
 
 const {Menu, MenuItem} = remote;
@@ -8,14 +8,16 @@ const {Menu, MenuItem} = remote;
   templateUrl: './explorer.component.html',
   styleUrls: ['./explorer.component.scss']
 })
-export class ExplorerComponent implements OnInit {
+export class ExplorerComponent {
   @Input() model: ExplorerModel;
   constructor() { }
 
-  ngOnInit() {
+  newConnection() {
+
   }
+
   itemClicked(item: PaneItem) {
-    alert(JSON.stringify(item));
+
   }
   itemContextMenu(item: PaneItem) {
     const menu = new Menu();

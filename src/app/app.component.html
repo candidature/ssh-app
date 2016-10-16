@@ -3,10 +3,8 @@
     <app-explorer [model]="explorerModel"></app-explorer>
   </div>
   <div class="content">
-    Content
-  </div>
-  <div class="aside">
-    Sidebar Right
+    <app-tabs *ngFor="let conn of connections">
+    </app-tabs>
   </div>
 </div>
 <div class="footer">
