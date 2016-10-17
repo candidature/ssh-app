@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { ExplorerModel } from './explorer';
+import { ExplorerModel } from '../../components/explorer';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'sa-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class AppComponent {
+export class MainComponent {
   explorerModel: ExplorerModel;
   title = 'Welcome to electron app!!!';
   connections: Array<any> = [];

@@ -4,7 +4,7 @@ import { remote } from 'electron';
 const {Menu, MenuItem} = remote;
 
 @Component({
-  selector: 'app-explorer',
+  selector: 'sa-explorer',
   templateUrl: './explorer.component.html',
   styleUrls: ['./explorer.component.scss']
 })

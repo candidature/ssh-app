@@ -3,23 +3,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { ExplorerComponent } from './explorer';
-import { TabsComponent, TabComponent } from './shared';
+import { MainComponent } from './containers/main/main.component';
+import { ComponentsModule } from './components';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ExplorerComponent,
-    TabsComponent,
-    TabComponent
+    MainComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ComponentsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [MainComponent]
 })
 export class AppModule { }

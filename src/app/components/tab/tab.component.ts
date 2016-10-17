@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-tab',
+  selector: 'sa-tab',
   template: `
     <div [hidden]="!active" class="pane">
       <ng-content></ng-content>
