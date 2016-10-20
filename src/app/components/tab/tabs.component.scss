@@ -20,6 +20,9 @@
       border-right: none;
       border-bottom: none;
       margin-bottom: -1px;
+      &:first-child {
+        border-left: none;
+      }
       &:last-child {
         border-right: 1px solid #aaa;
       }

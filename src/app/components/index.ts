@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ExplorerComponent } from './explorer';
+import { PanelComponent } from './panel/panel.component';
 import { TabComponent, TabsComponent} from './tab';
+import { ListItemComponent } from './list/list-item.component';
 
 
 
 export const COMPONENTS = [
-  ExplorerComponent,
+  ListItemComponent,
+  PanelComponent,
   TabComponent,
   TabsComponent
 ];

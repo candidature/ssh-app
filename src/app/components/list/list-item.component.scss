@@ -1,0 +1,21 @@
+$item-height: 1.6em;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  line-height: $item-height;
+  cursor: pointer;
+  -webkit-user-select: none;
+  width: 100%;
+  align-items: flex-start;
+  align-content: center;
+  &:hover {
+    background-color: darkcyan;
+    color: #fff;
+  }
+  &.active {
+    background-color: cyan;
+    color: #808080;
+  }
+}

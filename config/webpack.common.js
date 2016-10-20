@@ -45,18 +45,61 @@ const config = {
       {
         exclude: styles,
         test: /\.scss$|\.sass$/,
-        loaders: ['raw', 'postcss', 'sass']
+        use: [
+          'raw',
+          {
+            loader: 'postcss',
+            options: {
+              plugins: function() {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          },
+          'sass'
+        ]
       },
 
       // outside of main, load it via style-loader
       {
         include: styles,
         test: /\.css$/,
-        loaders: ['style', 'css', 'postcss']
+        use: [
+          'style',
+          { loader: 'css', options: { importLoaders: 1 } },
+          {
+            loader: 'postcss',
+            options: {
+              plugins: function() {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          }
+        ]
       }, {
         include: styles,
         test: /\.scss$|\.sass$/,
-        loaders: ['style', 'css', 'postcss', 'sass']
+        use: [
+          'style',
+          { loader: 'css', options: { importLoaders: 1 } },
+          {
+            loader: 'postcss',
+            options: {
+              plugins: function() {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          },
+          'sass'
+        ]
       },
 
       // load global scripts using script-loader

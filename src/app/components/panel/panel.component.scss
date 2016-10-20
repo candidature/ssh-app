@@ -1,0 +1,24 @@
+$header-height: 2em;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  div.header {
+    flex: 0 0 $header-height;
+    display: flex;
+    background-color: #808080;
+    color: #fff;
+    align-items: center;
+    align-content: center;
+    padding: 0 3px;
+  }
+  div.body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: stretch;
+    padding-top: 0.25em;
+  }
+}
