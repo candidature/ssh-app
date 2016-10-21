@@ -1,6 +1,8 @@
-$font-size: rem(1.4);
-
 @function rem($multiplier) {
   $font-size: 10px;
   @return $multiplier * $font-size;
 }
+
+$font-size: rem(1.4);
+$family-serif: Roboto;
+$family-primary: $family-serif;

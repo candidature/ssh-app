@@ -7,13 +7,15 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { MainComponent } from './containers/main/main.component';
+import { ConnectionFormComponent } from './containers/connection-form/connection-form.component';
 import { ComponentsModule } from './components';
 
 import { reducer} from './reducers';
 
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
+    ConnectionFormComponent
   ],
   imports: [
     BrowserModule,

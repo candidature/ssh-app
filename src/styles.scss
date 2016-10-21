@@ -1,5 +1,3 @@
-@import './app/styles/variables';
-
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: 'Roboto';
@@ -14,10 +12,6 @@
   font-weight: 500;
   src: local('Roboto Medium'), local('Roboto-Medium'), url(assets/fonts/Roboto-Medium.woff2) format('woff2');
 }
+@import './app/styles/variables';
+@import '../node_modules/bulma/bulma';
 
-body {
-  font-family: 'Roboto';
-  font-size: $font-size;
-  margin: 0;
-  padding: 0;
-}

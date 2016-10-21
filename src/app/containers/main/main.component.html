@@ -18,6 +18,7 @@
 		<sa-tabs *ngFor="let conn of connections$ | async">
 			<sa-tab title={{conn.name}}>
         <pre>Name:   {{conn.name}}<br/>Status: {{conn.status}}<br/>Tags:   {{conn.tags}}</pre>
+        <sa-connection-form></sa-connection-form>
       </sa-tab>
 		</sa-tabs>
 	</div>
