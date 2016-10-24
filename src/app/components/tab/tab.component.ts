@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [`
     .pane{
-      padding: 1em;
+      padding-left: 1em;
     }
   `],
 })

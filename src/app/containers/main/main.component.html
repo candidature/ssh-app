@@ -1,28 +1,27 @@
-<div class="body">
-	<div class="aside">
-		<sa-panel>
-			<div class="panel-header">
-				<span>Connections</span>
-			</div>
-			<div class="panel-body">
-				<sa-list-item *ngFor="let conn of connections$ | async" (contextmenu)="connContextMenu(conn)">
-					<div class="conn-label">
-            <span class="fa fa-caret-right"></span> {{conn.name}}
-            <span *ngIf="connStatus(conn)" class="fa fa-spinner fa-pulse fa-fw"></span>
-          </div>
-				</sa-list-item>
-			</div>
-		</sa-panel>
+<div class="columns">
+	<div class="column side-bar">
+		<aside class="menu">
+			<p class="menu-label">Connections</p>
+			<ul class="menu-list">
+				<li *ngFor="let conn of connections$ | async" (contextmenu)="connContextMenu(conn)">
+					<a>
+						<span class="fa fa-caret-right"></span> {{conn.name}}
+						<span *ngIf="connStatus(conn)" class="fa fa-spinner fa-pulse fa-fw"></span>
+					</a>
+				</li>
+			</ul>
+		</aside>
 	</div>
-	<div class="content">
+
+	<div class="column content">
 		<sa-tabs *ngFor="let conn of connections$ | async">
 			<sa-tab title={{conn.name}}>
-        <pre>Name:   {{conn.name}}<br/>Status: {{conn.status}}<br/>Tags:   {{conn.tags}}</pre>
-        <sa-connection-form></sa-connection-form>
-      </sa-tab>
+				<pre>Name: {{conn.name}}<br/>Status: {{conn.status}}<br/>Tags: {{conn.tags}}</pre>
+				<sa-connection-form></sa-connection-form>
+			</sa-tab>
 		</sa-tabs>
 	</div>
 </div>
-<div class="footer">
+<footer class="footer">
 	Footer
-</div>
+</footer>

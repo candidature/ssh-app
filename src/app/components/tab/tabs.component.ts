@@ -4,12 +4,14 @@ import { TabComponent } from './tab.component';
 @Component({
   selector: 'sa-tabs',
   template: `
-    <ul>
-      <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active">
-        <a href="#">{{tab.title}}</a>
-      </li>
-    </ul>
-    <div class="content">
+    <div class="tabs is-boxed">
+      <ul>
+        <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.is-active]="tab.active">
+          <a href="#">{{tab.title}}</a>
+        </li>
+      </ul>
+    </div>
+    <div>
       <ng-content></ng-content>
     </div>
   `,

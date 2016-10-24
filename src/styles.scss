@@ -15,3 +15,37 @@
 @import './app/styles/variables';
 @import '../node_modules/bulma/bulma';
 
+.container.is-fluid {
+  margin: 0;
+}
+
+.column {
+  &.side-bar {
+    flex: none;
+    width: 200px;
+    padding-right: 0;
+  }
+  &.content {
+    padding-left: 0;
+  }
+}
+
+.tabs {
+  ul {
+    margin: 0;
+    &:first-child a {
+      border-left-width: 0;
+    }
+  }
+  &.is-boxed a {
+    border-radius: 0;
+    border-top-width: 0;
+  }
+}
+
+.menu-label {
+  height: 3.2em;
+  background-color: $dark;
+  color: $dark-invert;
+  padding: 1em 0;
+}
