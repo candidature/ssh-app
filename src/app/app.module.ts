@@ -5,11 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
 
 import { MainComponent } from './containers/main/main.component';
 import { ComponentsModule } from './components';
 
-import { reducer} from './reducers';
+import { reducer } from './reducers';
 
 @NgModule({
   declarations: [
@@ -29,19 +30,16 @@ import { reducer} from './reducers';
     * based application.
     */
     StoreModule.provideStore(reducer),
-    /**
-     * Store devtools instrument the store retaining past versions of state
-     * and recalculating new states. This enables powerful time-travel
-     * debugging.
-     *
-     * To use the debugger, install the Redux Devtools extension for either
-     * Chrome or Firefox
-     *
-     * See: https://github.com/zalmoxisus/redux-devtools-extension
-     */
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+
+    StoreDevtoolsModule.instrumentStore({
+      monitor: useLogMonitor({
+        visible: true,
+        position: 'right'
+      })
+    }),
+    StoreLogMonitorModule
   ],
   providers: [],
   bootstrap: [MainComponent]
 })
-export class AppModule {}
+export class AppModule { }

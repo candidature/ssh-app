@@ -10,8 +10,8 @@
 	</ul>
 </aside>
 <div class="body-content">
-	<sa-tabs *ngFor="let conn of connections$ | async">
-		<sa-tab title={{conn.name}}>
+	<sa-tabs>
+		<sa-tab title={{conn.name}} *ngFor="let conn of connections$ | async">
 			<div class="columns">
 				<div class="column is-half is-offset-one-quarter">
 					<sa-connection-form *ngIf="isNew(conn)" [conn]="conn" (onSubmit)="submit($event)"></sa-connection-form>
@@ -23,3 +23,4 @@
 <footer>
 	<span>Status Bar</span>
 </footer>
+<ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>

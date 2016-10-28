@@ -47,6 +47,7 @@
     "@ngrx/effects": "2.0.0",
     "@ngrx/store": "2.2.1",
     "@ngrx/store-devtools": "3.2.1",
+    "@ngrx/store-log-monitor": "3.0.2",
     "@ngtools/webpack": "1.1.2",
     "@types/electron": "1.4.25",
     "@types/jasmine": "2.5.36",

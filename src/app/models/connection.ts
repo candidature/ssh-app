@@ -1,5 +1,6 @@
 import {ConnectionStatus} from './connection-status';
 export interface Connection {
+  id: string;
   name: string;
   host: string;
   port: number;

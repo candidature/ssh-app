@@ -4,17 +4,24 @@ import { Connection, ConnectionStatus } from '../models';
 import * as connection from '../actions/connection';
 
 export interface State {
-  connections: Connection[];
+  ids: string[];
+  entities: { [id: string]: Connection };
+  selectedConnId: string | null;
 }
 
 const initialState: State = {
-  connections: [{ name: 'New connection', host: '', port: 22, status: ConnectionStatus.NEW }]
+  ids: [],
+  entities: {},
+  selectedConnId: null
 };
 const connDefaults = { name: 'New connection', host: '', port: 22, status: ConnectionStatus.NEW };
 export function reducer(state = initialState, action: connection.Actions): State {
   switch (action.type) {
     case connection.ActionTypes.OPEN:
-      return { connections: [...state.connections, Object.assign({}, connDefaults)] };
+      return state;
+    case connection.ActionTypes.SAVE: {
+      return state;
+    }
     default:
       return state;
   }
@@ -28,7 +35,7 @@ export function reducer(state = initialState, action: connection.Actions): State
  * focused so they can be combined and composed to fit each particular
  * use-case.
  */
-export function getConnections(state$: Observable<State>): Observable<Connection[]> {
-  return state$.select(state => state.connections);
+export function getConnections(state$: Observable<State>) {
+  return state$.select(state => state.entities);
 }
 

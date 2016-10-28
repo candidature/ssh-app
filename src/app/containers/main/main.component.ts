@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
+import * as connection from '../../actions/connection';
 import { Connection, ConnectionStatus } from '../../models';
 
 import { remote } from 'electron';
@@ -12,7 +13,6 @@ const {Menu, MenuItem} = remote;
 @Component({
   selector: 'sa-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent {
@@ -49,6 +49,15 @@ export class MainComponent {
   }
 
   submit(obj) {
-    console.log(obj);
+    let payload: Connection = {
+      name: obj.name,
+      host: obj.host,
+      port: obj.port,
+      username: obj.username,
+      privateKey: obj.privateKey,
+      status: ConnectionStatus.DISCONNECTED,
+      tags: obj.tags
+    };
+    this._store.dispatch(new connection.SaveAction(payload));
   }
 }

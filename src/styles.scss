@@ -26,6 +26,10 @@ div.body-content {
   bottom: $footer-height;
   left: $side-bar-width;
   right: 0;
+
+  div.columns {
+    margin: 0;
+  }
 }
 
 .side-bar {
@@ -40,7 +44,7 @@ div.body-content {
 .tabs {
   ul {
     margin: 0;
-    &:first-child a {
+    li:first-child a {
       border-left-width: 0;
     }
   }

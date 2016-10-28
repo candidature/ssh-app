@@ -11,16 +11,11 @@ import { TabComponent } from './tab.component';
         </li>
       </ul>
     </div>
-    <div class="tab-content">
-      <ng-content></ng-content>
-    </div>
-  `,
-  styleUrls: ['./tabs.component.scss']
+    <ng-content></ng-content>
+  `
 })
 export class TabsComponent implements AfterContentInit {
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
-  constructor() { }
-
   ngAfterContentInit() {
     if (this.tabs.length === 0) {
       return;
