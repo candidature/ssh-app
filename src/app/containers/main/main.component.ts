@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
-import { Connection, ConnectionStatus } from '../../models/connection';
+import { Connection, ConnectionStatus } from '../../models';
 
 import { remote } from 'electron';
 
@@ -17,12 +17,11 @@ const {Menu, MenuItem} = remote;
 })
 export class MainComponent {
   connections$: Observable<Connection[]>;
-
   constructor(private _store: Store<fromRoot.State>) {
     this.connections$ = this._store.let(fromRoot.getConnections);
   }
 
-  connStatus(conn: Connection): boolean {
+  connBusy(conn: Connection): boolean {
     return (conn.status === ConnectionStatus.CONNECTING || conn.status === ConnectionStatus.DISCONNECTING);
   }
 
@@ -43,5 +42,13 @@ export class MainComponent {
       enabled: (ConnectionStatus.CONNECTED === conn.status || ConnectionStatus.WARNING === conn.status)
     }));
     menu.popup(remote.getCurrentWindow());
+  }
+
+  isNew(conn: Connection) {
+    return conn.status === ConnectionStatus.NEW;
+  }
+
+  submit(obj) {
+    console.log(obj);
   }
 }

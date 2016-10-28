@@ -1,6 +1,6 @@
 import '@ngrx/core/add/operator/select';
 import { Observable } from 'rxjs/Observable';
-import { Connection, ConnectionStatus } from '../models/connection';
+import { Connection, ConnectionStatus } from '../models';
 import * as connection from '../actions/connection';
 
 export interface State {
@@ -8,9 +8,9 @@ export interface State {
 }
 
 const initialState: State = {
-  connections: [{ name: 'New connection', status: ConnectionStatus.DISCONNECTED }]
+  connections: [{ name: 'New connection', host: '', port: 22, status: ConnectionStatus.NEW }]
 };
-const connDefaults = { name: 'New connection', status: ConnectionStatus.DISCONNECTED };
+const connDefaults = { name: 'New connection', host: '', port: 22, status: ConnectionStatus.NEW };
 export function reducer(state = initialState, action: connection.Actions): State {
   switch (action.type) {
     case connection.ActionTypes.OPEN:
@@ -28,7 +28,7 @@ export function reducer(state = initialState, action: connection.Actions): State
  * focused so they can be combined and composed to fit each particular
  * use-case.
  */
-export function getConnections(state$: Observable<State>) {
+export function getConnections(state$: Observable<State>): Observable<Connection[]> {
   return state$.select(state => state.connections);
 }
 

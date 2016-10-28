@@ -1,0 +1,37 @@
+<form [formGroup]="connectionForm" #conForm="ngForm">
+	<label class="label required">Name</label>
+	<div class="control">
+		<input type="text" class="input" formControlName="name" autofocus>
+		<span class="help is-danger" *ngIf="connectionForm.controls.name.dirty && connectionForm.controls.name.errors">Please enter connection name.</span>
+	</div>
+
+	<label class="label required">Host/IP</label>
+	<div class="control">
+		<input type="text" class="input" formControlName="host">
+		<span class="help is-danger" *ngIf="connectionForm.controls.host.dirty &&connectionForm.controls.host.errors">Please enter hostname or IP.</span>
+	</div>
+
+	<label class="label required">Port</label>
+	<div class="control">
+		<input type="number" class="input" formControlName="port">
+		<span class="help is-danger" *ngIf="connectionForm.controls.port.dirty &&connectionForm.controls.port.errors">Please enter port number.</span>
+	</div>
+	<label class="label">Username</label>
+	<div class="control"><input type="text" class="input" formControlName="username"></div>
+	<label class="label">Private Key</label>
+
+	<div class="control">
+    <textarea class="textarea" formControlName="privateKey"></textarea>
+		<span class="help is-danger" *ngIf="connectionForm.controls.privateKey.dirty &&connectionForm.controls.privateKey.errors">
+    Please select private key file.
+    </span>
+	</div>
+
+	<div class="control is-grouped">
+		<p class="control">
+			<button type="submit" class="button is-primary" [disabled]="connectionForm.pristine || connectionForm.invalid" (click)="submit()">Connect</button>
+		</p>
+		<p class="control"><button type="reset" class="button">Cancel</button></p>
+	</div>
+
+</form>

@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  div.tab-content {
+    display: inline-block;
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    bottom: 0;
+    overflow: auto;
+  }
+}

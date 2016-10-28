@@ -2,7 +2,7 @@
 const Webpack = require('webpack');
 const Path = require('path');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+//const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const buildDir = Path.resolve(__dirname, '../app/dist');
@@ -25,7 +25,8 @@ const envs = {
 const config = {
   devtool: 'source-map',
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    modules: [Path.resolve(__dirname, '../node_modules')]
   },
   context: buildDir,
   entry: entry,
@@ -148,13 +149,15 @@ const config = {
       new RegExp(Path.resolve(__dirname, envs['source'])
         .replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')),
       Path.resolve(__dirname, envs[process.env.NODE_ENV] || envs['source'])
-    ),
-    new CopyWebpackPlugin([{
-      context: Path.resolve(__dirname, '../src/assets'),
-      from: { glob: '**/*', dot: true },
-      ignore: ['.gitkeep'],
-      to: Path.resolve(__dirname, '../app/dist/assets')
-    }], { ignore: ['fonts/**'] })
+    )
+    // FIXME: Enable once glob issue is fixed
+    // ,
+    // new CopyWebpackPlugin([{
+    //   context: Path.resolve(__dirname, '../src/assets'),
+    //   from: { glob: '**/*', dot: true },
+    //   ignore: ['.gitkeep'],
+    //   to: Path.resolve(__dirname, '../app/dist/assets')
+    // }], { ignore: ['fonts/**'] })
   ],
   node: {
     fs: 'empty',

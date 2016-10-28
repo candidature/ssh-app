@@ -15,19 +15,26 @@
 @import './app/styles/variables';
 @import '../node_modules/bulma/bulma';
 
-.container.is-fluid {
-  margin: 0;
+html, body {
+  height: 100vh;
+  overflow: hidden;
 }
 
-.column {
-  &.side-bar {
-    flex: none;
-    width: 200px;
-    padding-right: 0;
-  }
-  &.content {
-    padding-left: 0;
-  }
+div.body-content {
+  position: absolute;
+  top: 0;
+  bottom: $footer-height;
+  left: $side-bar-width;
+  right: 0;
+}
+
+.side-bar {
+  position: absolute;
+  width: $side-bar-width;
+  left: 0;
+  top: 0;
+  bottom: $footer-height;
+  overflow: auto;
 }
 
 .tabs {
@@ -48,4 +55,27 @@
   background-color: $dark;
   color: $dark-invert;
   padding: 1em 0;
+}
+
+.side-bar {
+  background-color: $grey-lighter;
+}
+
+.label.required:after {
+  color: $red;
+  content: '*';
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background-color: $grey-dark;
+  color: $white;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  height: 2em;
 }

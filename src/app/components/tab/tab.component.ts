@@ -3,13 +3,17 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'sa-tab',
   template: `
-    <div [hidden]="!active" class="pane">
+    <div [hidden]="!active" class="container is-fluid pane">
       <ng-content></ng-content>
     </div>
   `,
   styles: [`
+    :host {
+      display: inline-block;
+      width: 100%;
+    }
     .pane{
-      padding-left: 1em;
+      padding-top: 0.25em;
     }
   `],
 })

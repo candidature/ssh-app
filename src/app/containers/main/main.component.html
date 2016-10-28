@@ -1,27 +1,25 @@
-<div class="columns">
-	<div class="column side-bar">
-		<aside class="menu">
-			<p class="menu-label">Connections</p>
-			<ul class="menu-list">
-				<li *ngFor="let conn of connections$ | async" (contextmenu)="connContextMenu(conn)">
-					<a>
-						<span class="fa fa-caret-right"></span> {{conn.name}}
-						<span *ngIf="connStatus(conn)" class="fa fa-spinner fa-pulse fa-fw"></span>
-					</a>
-				</li>
-			</ul>
-		</aside>
-	</div>
-
-	<div class="column content">
-		<sa-tabs *ngFor="let conn of connections$ | async">
-			<sa-tab title={{conn.name}}>
-				<pre>Name: {{conn.name}}<br/>Status: {{conn.status}}<br/>Tags: {{conn.tags}}</pre>
-				<sa-connection-form></sa-connection-form>
-			</sa-tab>
-		</sa-tabs>
-	</div>
+<aside class="menu side-bar">
+	<p class="menu-label">Connections</p>
+	<ul class="menu-list">
+		<li *ngFor="let conn of connections$ | async" (contextmenu)="connContextMenu(conn)">
+			<a>
+				<span class="fa fa-caret-right"></span> {{conn.name}}
+				<span *ngIf="connBusy(conn)" class="fa fa-spinner fa-pulse fa-fw"></span>
+			</a>
+		</li>
+	</ul>
+</aside>
+<div class="body-content">
+	<sa-tabs *ngFor="let conn of connections$ | async">
+		<sa-tab title={{conn.name}}>
+			<div class="columns">
+				<div class="column is-half is-offset-one-quarter">
+					<sa-connection-form *ngIf="isNew(conn)" [conn]="conn" (onSubmit)="submit($event)"></sa-connection-form>
+				</div>
+			</div>
+		</sa-tab>
+	</sa-tabs>
 </div>
-<footer class="footer">
-	Footer
+<footer>
+	<span>Status Bar</span>
 </footer>

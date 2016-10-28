@@ -11,7 +11,7 @@ import { TabComponent } from './tab.component';
         </li>
       </ul>
     </div>
-    <div>
+    <div class="tab-content">
       <ng-content></ng-content>
     </div>
   `,

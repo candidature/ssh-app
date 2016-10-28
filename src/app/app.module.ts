@@ -1,25 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { MainComponent } from './containers/main/main.component';
-import { ConnectionFormComponent } from './containers/connection-form/connection-form.component';
 import { ComponentsModule } from './components';
 
 import { reducer} from './reducers';
 
 @NgModule({
   declarations: [
-    MainComponent,
-    ConnectionFormComponent
+    MainComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     ComponentsModule,
 
