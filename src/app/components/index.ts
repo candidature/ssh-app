@@ -2,12 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { TabComponent, TabsComponent } from './tab';
+import { TabContentDirective, TabDirective, TabsetComponent, TabTitleDirective } from './tab';
 import { ConnectionFormComponent } from './connection-form/connection-form.component';
 
+export { TabChangeEvent } from './tab';
+
 export const COMPONENTS = [
-  TabComponent,
-  TabsComponent,
+  TabContentDirective,
+  TabDirective,
+  TabsetComponent,
+  TabTitleDirective,
   ConnectionFormComponent
 ];
 

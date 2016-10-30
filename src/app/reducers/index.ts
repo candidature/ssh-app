@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ActionReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 
-import * as fromConnection from './connections';
+import * as fromConnections from './connections';
 /**
  * The compose function is one of our most handy tools. In basic terms, you give
  * it any number of functions and it returns a function. This new function
@@ -38,7 +38,7 @@ import { combineReducers } from '@ngrx/store';
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
-  connections: fromConnection.State;
+  connections: fromConnections.State;
 }
 
 /**
@@ -49,7 +49,7 @@ export interface State {
  * the result from right to left.
  */
 const reducers = {
-  connections: fromConnection.reducer
+  connections: fromConnections.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -75,7 +75,7 @@ export function getConnectionsState(state$: Observable<State>) {
  *
  * Once again our compose function comes in handy. From right to left, we
  * first select the books state then we pass the state to the book
- * reducer's getBooks selector, finally returning an observable
+ * reducer's getConnections selector, finally returning an observable
  * of search results.
  *
  * Share memoizes the selector functions and published the result. This means
@@ -83,4 +83,7 @@ export function getConnectionsState(state$: Observable<State>) {
  * observable. Each subscription to the resultant observable
  * is shared across all subscribers.
  */
- export const getConnections = compose(fromConnection.getConnections, getConnectionsState);
+export const getConnectionEntities = compose(fromConnections.getConnectionEntities, getConnectionsState);
+export const getConnectionIds = compose(fromConnections.getConnectionIds, getConnectionsState);
+export const getSelectedConnection = compose(fromConnections.getSelectedConnection, getConnectionsState);
+export const getAllConnections = compose(fromConnections.getAllConnections, getConnectionsState);

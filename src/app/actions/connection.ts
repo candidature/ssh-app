@@ -14,6 +14,7 @@ export const ActionTypes = {
   OPEN: type('[Connection] Open New'),
   EDIT: type('[Connection] Edit'),
   SAVE: type('[Connection] Save'),
+  SELECT: type('[Connection] Select'),
   REMOVE: type('[Connection] Remove'),
   CONNECT: type('[Connection] Connect'),
   DISCONNECT: type('[Connection] Disconnect')
@@ -29,16 +30,21 @@ export const ActionTypes = {
 export class OpenAction implements Action {
   type = ActionTypes.OPEN;
 
-  constructor(public payload: string) { }
+  constructor() { }
 }
 
 export class SaveAction implements Action {
   type = ActionTypes.SAVE;
-  constructor(public payload: Connection) {}
+  constructor(public payload: Connection) { }
+}
+
+export class SelectAction implements Action {
+  type = ActionTypes.SELECT;
+  constructor(public payload: string) { }
 }
 
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
  */
-export type Actions = OpenAction | SaveAction;
+export type Actions = OpenAction | SaveAction | SelectAction;

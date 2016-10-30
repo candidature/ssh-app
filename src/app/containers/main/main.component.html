@@ -1,8 +1,23 @@
 <aside class="menu side-bar">
-	<p class="menu-label">Connections</p>
+	<div class="menu-label level">
+		<div class="level-left">
+			<div class="level-item">
+				<p class="subtitle is-6">
+					connections
+				</p>
+			</div>
+		</div>
+		<div class="level-right">
+			<p class="level-item">
+				<a (click)="openNew()">
+					<span class="fa fa-plus"></span>
+				</a>
+			</p>
+		</div>
+	</div>
 	<ul class="menu-list">
 		<li *ngFor="let conn of connections$ | async" (contextmenu)="connContextMenu(conn)">
-			<a>
+			<a [ngClass]="{'is-active': conn.id === selectedConnId}" (click)="menuClick(conn)">
 				<span class="fa fa-caret-right"></span> {{conn.name}}
 				<span *ngIf="connBusy(conn)" class="fa fa-spinner fa-pulse fa-fw"></span>
 			</a>
@@ -10,15 +25,17 @@
 	</ul>
 </aside>
 <div class="body-content">
-	<sa-tabs>
-		<sa-tab title={{conn.name}} *ngFor="let conn of connections$ | async">
-			<div class="columns">
-				<div class="column is-half is-offset-one-quarter">
-					<sa-connection-form *ngIf="isNew(conn)" [conn]="conn" (onSubmit)="submit($event)"></sa-connection-form>
+	<sa-tabset [activeId]="selectedConnId" (tabChange)="tabChange($event)">
+		<sa-tab title={{conn.name}} [id]="conn.id" *ngFor="let conn of connections$ | async">
+			<template saTabContent>
+				<div class="columns">
+					<div class="column is-half is-offset-one-quarter">
+						<sa-connection-form *ngIf="isNew(conn)" [conn]="conn" (onSubmit)="submit($event)"></sa-connection-form>
+					</div>
 				</div>
-			</div>
+			</template>
 		</sa-tab>
-	</sa-tabs>
+	</sa-tabset>
 </div>
 <footer>
 	<span>Status Bar</span>

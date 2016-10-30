@@ -31,6 +31,24 @@ const prodConfig = {
       compress: { screw_ie8: true, warnings: false },
       comments: false,
       sourceMap: true
+    }),
+    new Webpack.LoaderOptionsPlugin({
+      options: {
+        htmlLoader: {
+          minimize: true,
+          removeAttributeQuotes: false,
+          caseSensitive: true,
+          customAttrSurround: [
+            [/#/, /(?:)/],
+            [/\*/, /(?:)/],
+            [/\[?\(?/, /(?:)/]
+          ],
+          customAttrAssign: [/\)?\]?=/]
+        },
+        postcss: [
+          require('postcss-discard-comments')
+        ]
+      }
     })
   ]
 };

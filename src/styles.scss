@@ -57,8 +57,16 @@ div.body-content {
 .menu-label {
   height: 3.2em;
   background-color: $dark;
-  color: $dark-invert;
   padding: 1em 0;
+  p.subtitle {
+    color: $dark-invert;
+  }
+  p.level-item a {
+    color: $link-invert;
+    &:hover {
+      color: $link;
+    }
+  }
 }
 
 .side-bar {

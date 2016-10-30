@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TabChangeEvent } from '../../components';
 
 import * as fromRoot from '../../reducers';
 import * as connection from '../../actions/connection';
@@ -17,8 +18,14 @@ const {Menu, MenuItem} = remote;
 })
 export class MainComponent {
   connections$: Observable<Connection[]>;
+  selectedConnId: string;
   constructor(private _store: Store<fromRoot.State>) {
-    this.connections$ = this._store.let(fromRoot.getConnections);
+    this.connections$ = this._store.let(fromRoot.getAllConnections);
+    this._store.let(fromRoot.getSelectedConnection).subscribe(conn => {
+      if (conn) {
+        this.selectedConnId = conn.id;
+      }
+    });
   }
 
   connBusy(conn: Connection): boolean {
@@ -47,9 +54,20 @@ export class MainComponent {
   isNew(conn: Connection) {
     return conn.status === ConnectionStatus.NEW;
   }
-
+  openNew() {
+    this._store.dispatch(new connection.OpenAction());
+  }
+  menuClick(conn: Connection) {
+    if (conn.id !== this.selectedConnId) {
+      this._store.dispatch(new connection.SelectAction(conn.id));
+    }
+  }
+  tabChange(event: TabChangeEvent) {
+    this._store.dispatch(new connection.SelectAction(event.nextId));
+  }
   submit(obj) {
     let payload: Connection = {
+      id: obj.id,
       name: obj.name,
       host: obj.host,
       port: obj.port,

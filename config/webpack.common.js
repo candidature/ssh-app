@@ -4,6 +4,8 @@ const Path = require('path');
 
 //const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
 
 const buildDir = Path.resolve(__dirname, '../app/dist');
 
@@ -46,61 +48,18 @@ const config = {
       {
         exclude: styles,
         test: /\.scss$|\.sass$/,
-        use: [
-          'raw',
-          {
-            loader: 'postcss',
-            options: {
-              plugins: function() {
-                return [
-                  require('precss'),
-                  require('autoprefixer')
-                ];
-              }
-            }
-          },
-          'sass'
-        ]
+        use: ['raw', 'postcss', 'sass']
       },
 
       // outside of main, load it via style-loader
       {
         include: styles,
         test: /\.css$/,
-        use: [
-          'style',
-          { loader: 'css', options: { importLoaders: 1 } },
-          {
-            loader: 'postcss',
-            options: {
-              plugins: function() {
-                return [
-                  require('precss'),
-                  require('autoprefixer')
-                ];
-              }
-            }
-          }
-        ]
+        use: ['style', 'css?importLoaders=1', 'postcss']
       }, {
         include: styles,
         test: /\.scss$|\.sass$/,
-        use: [
-          'style',
-          { loader: 'css', options: { importLoaders: 1 } },
-          {
-            loader: 'postcss',
-            options: {
-              plugins: function() {
-                return [
-                  require('precss'),
-                  require('autoprefixer')
-                ];
-              }
-            }
-          },
-          'sass'
-        ]
+        use: ['style', 'css?importLoaders=1', 'postcss', 'sass']
       },
 
       // load global scripts using script-loader
@@ -110,34 +69,11 @@ const config = {
       { test: /\.(jpg|png|gif)$/, loader: 'url?limit=10000' },
       { test: /\.html$/, loader: 'html' },
 
-      { test: /\.(otf|woff|ttf|svg)$/, loader: 'url?limit=10000' },
-      { test: /\.woff2$/, loader: 'url?limit=10000&mimetype=font/woff2' },
-      { test: /\.eot$/, loader: 'file' }
+      { test: /\.(otf|ttf|woff|woff2)$/, loader: 'url?limit=10000' },
+      { test: /\.(eot|svg)$/, loader: 'file' }
     ]
   },
   plugins: [
-    new Webpack.LoaderOptionsPlugin({
-      options: {
-        minimize: true,
-        debug: false,
-        tslint: {
-          emitErrors: true,
-          failOnHint: true,
-          resourcePath: Path.resolve(__dirname, '../src')
-        },
-        htmlLoader: {
-          minimize: true,
-          removeAttributeQuotes: false,
-          caseSensitive: true,
-          customAttrSurround: [
-            [/#/, /(?:)/],
-            [/\*/, /(?:)/],
-            [/\[?\(?/, /(?:)/]
-          ],
-          customAttrAssign: [/\)?\]?=/]
-        }
-      }
-    }),
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, '../src/index.html'),
       chunkSortMode: 'dependency'
@@ -149,7 +85,7 @@ const config = {
       new RegExp(Path.resolve(__dirname, envs['source'])
         .replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')),
       Path.resolve(__dirname, envs[process.env.NODE_ENV] || envs['source'])
-    )
+    ),
     // FIXME: Enable once glob issue is fixed
     // ,
     // new CopyWebpackPlugin([{
@@ -157,7 +93,13 @@ const config = {
     //   from: { glob: '**/*', dot: true },
     //   ignore: ['.gitkeep'],
     //   to: Path.resolve(__dirname, '../app/dist/assets')
-    // }], { ignore: ['fonts/**'] })
+    // }], { ignore: ['fonts/**'] }),
+    new Webpack.LoaderOptionsPlugin({
+      test: /\.(css|scss|sass|less|styl)$/,
+      options: {
+        postcss: [precss(), autoprefixer()]
+      }
+    })
   ],
   node: {
     fs: 'empty',
